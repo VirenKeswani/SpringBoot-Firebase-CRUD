@@ -23,23 +23,23 @@ public class CRUDController {
 
     @PostMapping("/create")
     public String createCRUD(@RequestBody crud crud) throws InterruptedException, ExecutionError, ExecutionException {
-        return crudService.createCRUD(crud, crud.getDocument_id());
+        return crudService.createCRUD(crud, crud.getUser_id());
     }
 
     @GetMapping("/get")
-    public crud getCRUD(@RequestParam String document_id)
+    public crud getCRUD(@RequestParam String user_id)
             throws InterruptedException, ExecutionError, ExecutionException {
-        return crudService.getCRUD(document_id);
+        return crudService.getCRUD(user_id);
     }
 
     @PutMapping("/update")
     public String updateCRUD(@RequestBody crud crud) throws InterruptedException, ExecutionError, ExecutionException {
-        return crudService.updateCRUD(crud, crud.getDocument_id());
+        return crudService.updateCRUD(crud, crud.getUser_id());
     }
 
     @PutMapping("/delete")
-    public String deleteCRUD(@RequestParam String document_id) throws InterruptedException, ExecutionError {
-        return crudService.deleteCRUD(document_id);
+    public String deleteCRUD(@RequestParam String user_id) throws InterruptedException, ExecutionError {
+        return crudService.deleteCRUD(user_id);
     }
 
     @GetMapping("/test")

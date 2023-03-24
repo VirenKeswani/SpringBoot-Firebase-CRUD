@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import java.util.concurrent.ExecutionException;
-
+import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.google.api.core.ApiFuture;
@@ -14,18 +14,19 @@ import com.google.firebase.cloud.FirestoreClient;
 @Service
 public class CRUDService {
 
-    public String createCRUD(crud crud, String document_id) throws InterruptedException, ExecutionException {
+    public String createCRUD(crud crud, String user_id) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         System.out.println(
-                "====================================\n" + crud.getName() + "\n====================================");
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("crud_user").document(document_id)
+                "====================================\n" + UUID.randomUUID()
+                        + "\n====================================");
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("crud_user").document(user_id)
                 .set(crud);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 
-    public crud getCRUD(String document_id) throws InterruptedException, ExecutionException {
+    public crud getCRUD(String user_id) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFirestore.collection("crud_user").document(document_id);
+        DocumentReference documentReference = dbFirestore.collection("crud_user").document(user_id);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
         crud crud;
@@ -38,17 +39,17 @@ public class CRUDService {
 
     }
 
-    public String updateCRUD(crud crud, String document_id) throws InterruptedException, ExecutionException {
+    public String updateCRUD(crud crud, String user_id) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("crud_user").document(document_id)
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("crud_user").document(user_id)
                 .set(crud);
         return collectionApiFuture.get().getUpdateTime().toString();
 
     }
 
-    public String deleteCRUD(String document_id) {
+    public String deleteCRUD(String user_id) {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> writeResult = dbFirestore.collection("crud_user").document(document_id).delete();
-        return "Document with ID " + document_id + " has been deleted";
+        ApiFuture<WriteResult> writeResult = dbFirestore.collection("crud_user").document(user_id).delete();
+        return "Document with ID " + user_id + " has been deleted";
     }
 }
