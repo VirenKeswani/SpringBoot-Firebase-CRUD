@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class crud {
-    private String user_id;
+    // private String user_id;
+    private String phone;
     private String name;
     private String expertise;
     private String email;
-    private String phone;
     private String linkedin_url;
     private Boolean is_verified;
 
