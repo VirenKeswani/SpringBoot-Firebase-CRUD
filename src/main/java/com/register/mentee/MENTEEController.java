@@ -1,4 +1,4 @@
-package com.example.mentee;
+package com.register.mentee;
 
 import java.util.concurrent.ExecutionException;
 

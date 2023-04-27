@@ -1,4 +1,4 @@
-package com.example.mentor;
+package com.register.mentor;
 
 import lombok.Getter;
 import lombok.Setter;

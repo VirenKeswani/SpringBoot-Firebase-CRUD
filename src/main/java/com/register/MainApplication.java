@@ -1,4 +1,4 @@
-package com.example;
+package com.register;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,10 +12,10 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
 @SpringBootApplication
-public class DemoApplication {
+public class MainApplication {
 
     public static void main(String[] args) throws IOException {
-        ClassLoader classLoader = DemoApplication.class.getClassLoader();
+        ClassLoader classLoader = MainApplication.class.getClassLoader();
 
         File file = new File(classLoader.getResource("serviceAccountKey.json").getFile());
 
@@ -30,7 +30,7 @@ public class DemoApplication {
 
         FirebaseApp.initializeApp(options);
 
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(MainApplication.class, args);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.mentor;
+package com.register.mentee;
 
 import java.util.concurrent.ExecutionException;
 import java.util.UUID;
@@ -12,42 +12,41 @@ import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 
 @Service
-public class MENTORService {
-
+public class MENTEEServices {
     Firestore dbFirestore = FirestoreClient.getFirestore();
 
-    public String createMENTOR(mentor mentor, String phone) throws InterruptedException, ExecutionException {
+    public String createMENTEE(mentee mentee, String phone) throws InterruptedException, ExecutionException {
         System.out.println(
                 "====================================\n" + UUID.randomUUID()
                         + "\n====================================");
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("MENTOR_user").document(phone)
-                .set(mentor);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("mentee_user").document(phone)
+                .set(mentee);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 
-    public mentor getMENTOR(String phone) throws InterruptedException, ExecutionException {
-        DocumentReference documentReference = dbFirestore.collection("MENTOR_user").document(phone);
+    public mentee getMENTEE(String phone) throws InterruptedException, ExecutionException {
+        DocumentReference documentReference = dbFirestore.collection("mentee_user").document(phone);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
-        mentor mentor;
+        mentee mentee;
         if (document.exists()) {
-            mentor = document.toObject(mentor.class);
-            return mentor;
+            mentee = document.toObject(mentee.class);
+            return mentee;
         } else {
             return null;
         }
 
     }
 
-    public String updateMENTOR(mentor mentor, String phone) throws InterruptedException, ExecutionException {
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("MENTOR_user").document(phone)
-                .set(mentor);
+    public String updateMENTEE(mentee mentee, String phone) throws InterruptedException, ExecutionException {
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("mentee_user").document(phone)
+                .set(mentee);
         return collectionApiFuture.get().getUpdateTime().toString();
 
     }
 
-    public String deleteMENTOR(String phone) {
-        ApiFuture<WriteResult> writeResult = dbFirestore.collection("MENTOR_user").document(phone).delete();
+    public String deleteMENTEE(String phone) {
+        ApiFuture<WriteResult> writeResult = dbFirestore.collection("mentee_user").document(phone).delete();
         return "Document with ID " + phone + " has been deleted";
     }
 
