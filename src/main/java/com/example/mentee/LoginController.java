@@ -1,4 +1,4 @@
-package com.register.mentee;
+package com.example.mentee;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

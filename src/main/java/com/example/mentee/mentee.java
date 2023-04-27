@@ -1,4 +1,4 @@
-package com.register.mentee;
+package com.example.mentee;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.register.mentor;
+package com.example.mentor;
 
 import java.util.concurrent.ExecutionException;
 
