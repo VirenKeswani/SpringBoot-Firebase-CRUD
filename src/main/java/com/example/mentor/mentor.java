@@ -1,11 +1,11 @@
-package com.example.demo;
+package com.example.mentor;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class crud {
+public class mentor {
     // private String user_id;
     private String phone;
     private String name;
@@ -13,5 +13,4 @@ public class crud {
     private String email;
     private String linkedin_url;
     private Boolean is_verified;
-
 }
